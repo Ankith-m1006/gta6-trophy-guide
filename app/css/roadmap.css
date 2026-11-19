@@ -1,0 +1,63 @@
+/* Platinum roadmap and the sources page. */
+.roadmap, .sources { overflow-y: auto; padding: 12px 18px 20px; }
+.rm-intro { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 12px; }
+.rm-intro h2 { margin: 0 0 4px; font: 700 20px var(--display); color: var(--gold); }
+.rm-intro p { margin: 0; font-size: 13.5px; color: #ddd6ef; }
+.rm-facts { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.rm-facts div { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; }
+.rm-facts dt { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.rm-facts dd { margin: 0; font-weight: 700; font-size: 13px; }
+
+.rm-grid { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 12px; align-items: start; }
+.stages { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; }
+.stage-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 9px; align-items: start; margin-bottom: 6px; }
+.stage-num {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 13px;
+  background: linear-gradient(135deg, var(--pink), var(--coral)); color: #fff;
+}
+.stage h3 { margin: 0; font-size: 15px; }
+.stage-sub { margin: 1px 0 0; font-size: 12px; color: var(--muted); line-height: 1.35; }
+.stage-pct { font-size: 12px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+.stage-tips { margin: 8px 0 4px; padding-left: 16px; font-size: 12px; color: #d6cfea; }
+.stage-tips li { margin: 1px 0; }
+.rm-list { list-style: none; margin: 6px 0 0; padding: 0; }
+.rm-trophy { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 13px; border-top: 1px solid rgba(47, 38, 82, 0.6); }
+.rm-trophy .check { width: 15px; height: 15px; border-width: 2px; }
+.rm-trophy .grade-icon, .rm-trophy .grade-icon svg { width: 16px; height: 16px; }
+.rm-name { color: var(--text); text-decoration: none; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rm-name:hover { color: var(--teal); }
+.rm-trophy.earned .rm-name { color: var(--ok); text-decoration: line-through; text-decoration-color: rgba(74, 222, 156, 0.5); }
+.rm-trophy.is-miss .rm-name { font-weight: 650; }
+
+.watchlist { position: sticky; top: 0; background: var(--panel); border: 1px solid rgba(255, 93, 115, 0.55); border-radius: var(--radius); padding: 10px 12px; }
+.watchlist h3 { margin: 0; color: var(--miss); font-size: 15px; }
+.watchlist > p { margin: 2px 0 6px; font-size: 12px; }
+.watch { margin: 0; padding-left: 18px; font-size: 12.5px; }
+.watch li { margin: 0 0 6px; }
+.watch li::marker { color: var(--miss); font-weight: 700; }
+.watch a { color: var(--text); font-weight: 650; text-decoration: none; }
+.watch a:hover { color: var(--teal); }
+.watch li.earned a { color: var(--ok); text-decoration: line-through; }
+.watch-why { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.35; }
+
+.prose { max-width: 860px; }
+.prose h2 { font: 700 20px var(--display); color: var(--gold); margin: 0 0 8px; }
+.prose p { color: #ddd6ef; font-size: 14px; }
+.source-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.source-table th, .source-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.source-table .url { font-size: 11px; word-break: break-all; }
+
+@media (max-width: 900px) {
+  .rm-intro, .rm-grid { grid-template-columns: 1fr; }
+  .watchlist { position: static; }
+}
+.rm-cite { margin-top: 4px !important; font-size: 12px !important; color: var(--muted) !important; }
+.rm-facts dd { white-space: nowrap; }
+.rm-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+.rm-name { flex: 0 1 auto; }
+.rm-mission { flex: 1; min-width: 0; color: var(--muted); font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rm-mission::before { content: "· "; }
+.rm-trophy { padding: 2px 0; }
+.stage-tips { font-size: 11.5px; }
+.stages { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }

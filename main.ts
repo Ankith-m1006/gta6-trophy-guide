@@ -14,13 +14,21 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
+// Leonida Ledger pre-flight: say how complete the guide data is before handing it in (informational only).
+const ledger = JSON.parse(readFileSync(join(here, 'app', 'data', 'trophies.json'), 'utf8')).trophies as Array<{ name: string; guide?: string; sources?: unknown[]; missable?: string }>;
+const unguided = ledger.filter((t) => !t.guide?.trim()).map((t) => t.name);
+const uncited = ledger.filter((t) => !t.sources?.length).map((t) => t.name);
+console.log(`Leonida Ledger: ${ledger.length} trophies, ${ledger.length - unguided.length} with guides, ${ledger.length - uncited.length} cited, ${ledger.filter((t) => t.missable).length} missable.`);
+if (unguided.length) console.log(`  no guide yet: ${unguided.join(', ')}`);
+if (uncited.length) console.log(`  no source yet: ${uncited.join(', ')}`);
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
